@@ -1,6 +1,9 @@
 import exe.ex3.game.Game;
 import exe.ex3.game.PacManAlgo;
 import exe.ex3.game.PacmanGame;
+//imports fot arrows keys
+import java.awt.event.KeyEvent;
+import exe.ex3.game.StdDraw;
 
 /**
  * Ex3, School of Computer Science, Ariel University.
@@ -24,6 +27,7 @@ public class Ex3Main {
     private static Character _cmd;
     public static void main(String[] args) {
         play1();
+
     }
     public static void play1() {
     	Game ex3 = new Game();//new Game(level);
@@ -31,14 +35,29 @@ public class Ex3Main {
         PacManAlgo man = GameInfo.ALGO;
         while(ex3.getStatus()!=PacmanGame.DONE) {
             _cmd = ex3.getKeyChar();
+
+            /* here we allow to play with arrows keys */
+            if(StdDraw.isKeyPressed(KeyEvent.VK_UP)) { _cmd = 'w'; }
+            if(StdDraw.isKeyPressed(KeyEvent.VK_DOWN)) { _cmd = 's'; }
+            if(StdDraw.isKeyPressed(KeyEvent.VK_LEFT)) { _cmd = 'a'; }
+            if(StdDraw.isKeyPressed(KeyEvent.VK_RIGHT)) { _cmd = 'd'; }
+
             if(_cmd !=null && _cmd == ' ') {ex3.play();}
             if (_cmd != null && _cmd == 'h') {
             	System.out.println("Pacman help: keys: ' '-start, 'w,a,x,d'-directions, all other parameters should be configured via GameInfo.java, ");
             }
             int  dir = man.move(ex3);
             ex3.move(dir);
+            /* this does pauses or start the game for the arrows keys */
+            if(_cmd != null && _cmd == ' ') {ex3.play();}
         }
         ex3.end(-1);
     }
     public static Character getCMD() {return _cmd;}
+
+    public static void play2() {
+
+    }
+
+
 }
