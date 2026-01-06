@@ -1,5 +1,6 @@
 import exe.ex3.game.PacManAlgo;
 import exe.ex3.game.PacmanGame;
+import java.awt.event.KeyEvent;
 
 public class ManualAlgo implements PacManAlgo{
     public ManualAlgo() {;}
@@ -13,10 +14,10 @@ public class ManualAlgo implements PacManAlgo{
         int ans = PacmanGame.ERR;
         Character cmd = Ex3Main.getCMD();
             if (cmd != null) {
-                if (cmd == 'w') {ans = PacmanGame.UP;}
-                if (cmd == 's') {ans = PacmanGame.DOWN;}
-                if (cmd == 'a') {ans = PacmanGame.LEFT;}
-                if (cmd == 'd') {ans = PacmanGame.RIGHT;}
+                if (cmd == 'w' || cmd == 'W' || cmd == KeyEvent.VK_UP || cmd == '8') {ans = PacmanGame.UP;}
+                if (cmd == 's' || cmd == 'S' || cmd == KeyEvent.VK_DOWN || cmd == '5') {ans = PacmanGame.DOWN;}
+                if (cmd == 'a' || cmd == 'A' || cmd == KeyEvent.VK_LEFT || cmd == '4') {ans = PacmanGame.LEFT;}
+                if (cmd == 'd' || cmd == 'D' || cmd == KeyEvent.VK_RIGHT || cmd == '6') {ans = PacmanGame.RIGHT;}
             }
             return  ans;
     }

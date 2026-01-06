@@ -18,9 +18,6 @@ public class Index2D implements Pixel2D {
         double len2 = this._y - t.getY() ;
         return Math.sqrt((len1 *len1) + (len2 *len2));
     }
-        ///////////////////////////////////
-        return ans;
-    }
     @Override
     public String toString() {
         return getX()+","+getY();
