@@ -95,18 +95,27 @@ public class Map implements Map2D {
 
 	@Override
 	/////// add your code below ///////
-	public void setPixel(int x, int y, int v) {;}
+	public void setPixel(int x, int y, int v) {
+        if (_cyclicFlag) {
+            x = (x % getWidth() + getWidth()) % getWidth();
+            y = (y % getHeight() + getHeight()) % getHeight();
+        }
+        if (isInside(x, y)) {
+            this._map[x][y] = v;
+        }
+    }
 
 	@Override
 	/////// add your code below ///////
 	public void setPixel(Pixel2D p, int v) {
-		;
+        this.setPixel(p.getX(), p.getY(), v);
 	}
 
 	@Override
-	/** 
+	/**
 	 * Fills this map with the new color (new_v) starting from p.
 	 * https://en.wikipedia.org/wiki/Flood_fill
+     * Uses BFS Flood Fill logic.
 	 */
 	public int fill(Pixel2D xy, int new_v) {
 		int ans=0;
@@ -131,17 +140,22 @@ public class Map implements Map2D {
 	@Override
 	/////// add your code below ///////
 	public boolean isInside(Pixel2D p) {
-		return false;
+        return isInside(p.getX(), p.getY());
 	}
-
+    private boolean isInside(int x, int y) { //privet function to help check if inside map
+        return _cyclicFlag || (x >= 0 && x < getWidth() && y >= 0 && y < getHeight());
+    }
 	@Override
 	/////// add your code below ///////
 	public boolean isCyclic() {
-		return false;
+        return _cyclicFlag;
 	}
 	@Override
 	/////// add your code below ///////
-	public void setCyclic(boolean cy) {;}
+	public void setCyclic(boolean cy) {
+        this._cyclicFlag = cy;
+    }
+
 	@Override
 	/////// add your code below ///////
 	public Map2D allDistance(Pixel2D start, int obsColor) {
