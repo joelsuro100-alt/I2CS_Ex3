@@ -64,20 +64,33 @@ public class Map implements Map2D {
 
 	@Override
 	/////// add your code below ///////
-	public int getWidth() {return 0;}
+	public int getWidth() {
+        return this._map.length;
+    }
 
 	@Override
 	/////// add your code below ///////
-	public int getHeight() {return 0;}
+	public int getHeight() {
+        return this._map[0].length;
+    }
 
 	@Override
 	/////// add your code below ///////
-	public int getPixel(int x, int y) { return 0;}
+	public int getPixel(int x, int y) {
+        if (_cyclicFlag) {
+            x = (x % getWidth() + getWidth()) % getWidth();
+            y = (y % getHeight() + getHeight()) % getHeight();
+        }
+        if (isInside(x, y)) {
+            return this._map[x][y];
+        }
+        return 0; //if not cycle
+    }
 
 	@Override
 	/////// add your code below ///////
 	public int getPixel(Pixel2D p) {
-		return this.getPixel(p.getX(),p.getY());
+        return this.getPixel(p.getX(), p.getY());
 	}
 
 	@Override
