@@ -27,48 +27,69 @@ public class Map implements Map2D {
 	public Map(int[][] data) {
 		init(data);
 	}
+
 	@Override
 	public void init(int w, int h, int v) {
 		/////// add your code below ///////
-
+        this._map = new int[w][h];
+        for (int i = 0; i < w; i++) {
+            for (int j = 0; j < h; j++) {
+                _map[i][j] = v;
+            }
+        }
 		///////////////////////////////////
 	}
 	@Override
 	public void init(int[][] arr) {
 		/////// add your code below ///////
-
+        if (arr == null || arr.length == 0 || arr[0] == null) {
+            throw new RuntimeException("Invalid array initialization");
+        }
 		///////////////////////////////////
 	}
 	@Override
 	public int[][] getMap() {
-		int[][] ans = null;
 		/////// add your code below ///////
-
+        int w = this._map.length;
+        int h = this._map[0].length;
+        int[][] ans = new int[w][h];
+        for (int i = 0; i < w; i++) {
+            for (int j = 0; j < h; j++) {
+                ans[i][j] = this._map[i][j];
+            }
+        }
 		///////////////////////////////////
 		return ans;
 	}
+
 	@Override
 	/////// add your code below ///////
 	public int getWidth() {return 0;}
+
 	@Override
 	/////// add your code below ///////
 	public int getHeight() {return 0;}
+
 	@Override
 	/////// add your code below ///////
 	public int getPixel(int x, int y) { return 0;}
+
 	@Override
 	/////// add your code below ///////
 	public int getPixel(Pixel2D p) {
 		return this.getPixel(p.getX(),p.getY());
 	}
+
 	@Override
 	/////// add your code below ///////
 	public void setPixel(int x, int y, int v) {;}
+
 	@Override
 	/////// add your code below ///////
 	public void setPixel(Pixel2D p, int v) {
 		;
 	}
+
 	@Override
 	/** 
 	 * Fills this map with the new color (new_v) starting from p.

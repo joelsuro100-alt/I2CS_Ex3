@@ -4,7 +4,7 @@ import exe.ex3.game.PacManAlgo;
  * Make sure you update your details below!
  */
 public class GameInfo {
-	public static final String MY_ID = "326671146";
+	public static final String MY_ID = "1234";
 	public static final int CASE_SCENARIO = 1; // [0,4]
 	public static final long RANDOM_SEED = 31; // Random seed
 	public static final boolean CYCLIC_MODE = true;
@@ -13,6 +13,6 @@ public class GameInfo {
 	private static PacManAlgo _manualAlgo = new ManualAlgo();
 	private static PacManAlgo _myAlgo = new Ex3Algo();
     /**this controls if you play the algorithm or self-control for the pack-man*/
-    public static final PacManAlgo ALGO = _manualAlgo;
-    //public static final PacManAlgo ALGO = _myAlgo;
+    //public static final PacManAlgo ALGO = _manualAlgo;
+	public static final PacManAlgo ALGO = _myAlgo;
 }

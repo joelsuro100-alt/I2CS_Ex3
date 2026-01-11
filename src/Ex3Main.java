@@ -27,7 +27,6 @@ public class Ex3Main {
     private static Character _cmd;
     public static void main(String[] args) {
         play1();
-
     }
     public static void play1() {
     	Game ex3 = new Game();//new Game(level);
@@ -35,7 +34,6 @@ public class Ex3Main {
         PacManAlgo man = GameInfo.ALGO;
         while(ex3.getStatus()!=PacmanGame.DONE) {
             _cmd = ex3.getKeyChar();
-
             /* here we allow to play with arrows keys */
             if(StdDraw.isKeyPressed(KeyEvent.VK_UP)) { _cmd = 'w'; }
             if(StdDraw.isKeyPressed(KeyEvent.VK_DOWN)) { _cmd = 's'; }
@@ -55,9 +53,8 @@ public class Ex3Main {
     }
     public static Character getCMD() {return _cmd;}
 
+
     public static void play2() {
 
     }
-
-
 }
