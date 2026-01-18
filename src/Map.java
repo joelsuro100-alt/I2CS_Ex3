@@ -50,6 +50,12 @@ public class Map implements Map2D {
         if (arr == null || arr.length == 0 || arr[0] == null) {
             throw new RuntimeException("Invalid array initialization");
         }
+        this._map = new int[arr.length][arr[0].length]; //restart the arr and copy the data for optimized loading and not stuck
+        for (int x = 0; x < arr.length; x++) {
+            for (int y = 0; y < arr[0].length; y++) {
+                this._map[x][y] = arr[x][y];
+            }
+        }
 		///////////////////////////////////
 	}
 	@Override
@@ -283,6 +289,4 @@ private boolean isInside(int x, int y) { //privet function to help check if insi
                 new Index2D(x, y - 1) // Up: subtract 1 from y
         }; //end of the array
     }
-
-
 }
