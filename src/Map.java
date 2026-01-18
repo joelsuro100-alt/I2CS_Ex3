@@ -134,11 +134,12 @@ public class Map implements Map2D {
         int old_v = getPixel(xy); //find out what color is there now
         if (old_v == new_v) return 0; //no need to color if it's already the new color
 
+        boolean[][] visited = new boolean[getWidth()][getHeight()];
         Queue<Pixel2D> q = new LinkedList<>(); //make a queue to hold pixels we need to check for BFS method from EX2
-        Set<String> visited = new HashSet<>(); //use a set to remember which pixels we already saw
         Pixel2D start = normalize(xy); //calls privet function that helps cycle world
-        q.add(start);
-        visited.add(start.toString());
+        visited[start.getX()][start.getY()] = true;
+        q.add(start); //visited.add(start.toString());
+        visited[start.getX()][start.getY()] = true; //use a set to remember which pixels we already saw
         setPixel(start, new_v); //change the start to new color
         ans++;
 
@@ -147,9 +148,9 @@ public class Map implements Map2D {
             Pixel2D[] neighbors = getNeighbors(curr);
             for(Pixel2D n : neighbors) {
                 Pixel2D normN = normalize(n); //handles if neighbor is outside map in cycle mode
-                if (isInside(normN) && !visited.contains(normN.toString()) && getPixel(normN) == old_v) { //check if valid not visited and old color
+                if (isInside(normN) && visited[normN.getX()][normN.getY()] && getPixel(normN) == old_v) { //check if valid not visited and old color
                     setPixel(normN, new_v); //change to new color
-                    visited.add(normN.toString()); //add to visited set
+                    visited[normN.getX()][normN.getY()] = true; //add to visited set
                     q.add(normN); //put in queue to check its neighbors later
                     ans++; //add 1 to count
                 }
