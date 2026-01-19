@@ -28,27 +28,50 @@ public class Ex3Algo implements PacManAlgo{
      * This ia the main method - that you should design, implement and test.
      */
     public int move(PacmanGame game) {
-        if(_count==0 || _count==300) {
-            int code = 0;
-            int[][] board = game.getGame(0);
-            printBoard(board);
-            int blue = Game.getIntColor(Color.BLUE, code);
-            int pink = Game.getIntColor(Color.PINK, code);
-            int black = Game.getIntColor(Color.BLACK, code);
-            int green = Game.getIntColor(Color.GREEN, code);
-            System.out.println("Blue=" + blue + ", Pink=" + pink + ", Black=" + black + ", Green=" + green);
-            String pos = game.getPos(code).toString();
-            String[] parts = pos.split(","); //split the string to int
-            int x = Integer.parseInt(parts[0].trim());
-            int y = Integer.parseInt(parts[1].trim());
-            System.out.println("Pacman coordinate: "+pos);
-            GhostCL[] ghosts = game.getGhosts(code);
-            printGhosts(ghosts);
-            int up = Game.UP, left = Game.LEFT, down = Game.DOWN, right = Game.RIGHT;
+        int code = 0;
+        int[][] board = game.getGame(code); //get the board from the game
+        String posString = game.getPos(code); //pacman pos
+        Pixel2D pacmanPos = stringToPixel(posString); //convert string to pixel position
+        Map map = new Map(board); //make map from the board to use map functions
+        map.setCyclic(true); //set to cyclic mode true if accidentally turned off
+
+        Map2D distanceMap = map.allDistance(pacmanPos, 1); //call alldistance(BFS) to calc dis 1= wall
+        Pixel2D nearest = null; //nearest food start null
+        int minDistance = Integer.MAX_VALUE; //start with very large distance, Uri uncle suggestion
+        for (int x = 0; x < map.getWidth(); x++) { //search map for food
+            for (int y = 0; y < map.getHeight(); y++) {
+                int pixelValue = map.getPixel(x, y); //get the value at this position
+                if (pixelValue == 3 || pixelValue == 5) {  //check if the pixel is food (3 or 5)
+                    Pixel2D foodPos = new Index2D(x, y); //define this as a pixel for food position
+                    int distance = distanceMap.getPixel(foodPos); //get distance to this food from distance map
+                    if (distance > 0 && distance < minDistance) { //check if reachable and closest
+                        minDistance = distance; //update the minimum distance
+                        nearest = foodPos; //update the nearest food position
+                    }
+                }
+            }
         }
-        _count++;
-        int dir = randomDir();
-        return dir;
+//        if(_count==0 || _count==300) {
+//
+//
+//            printBoard(board);
+//            int blue = Game.getIntColor(Color.BLUE, code);
+//            int pink = Game.getIntColor(Color.PINK, code);
+//            int black = Game.getIntColor(Color.BLACK, code);
+//            int green = Game.getIntColor(Color.GREEN, code);
+//            System.out.println("Blue=" + blue + ", Pink=" + pink + ", Black=" + black + ", Green=" + green);
+//
+//            String[] parts = pos.split(","); //split the string to int
+//            int x = Integer.parseInt(parts[0].trim());
+//            int y = Integer.parseInt(parts[1].trim());
+//            System.out.println("Pacman coordinate: "+pos);
+//            GhostCL[] ghosts = game.getGhosts(code);
+//            printGhosts(ghosts);
+//            int up = Game.UP, left = Game.LEFT, down = Game.DOWN, right = Game.RIGHT;
+//        }
+//        _count++;
+//        int dir = randomDir();
+//        return dir;
     }
     private static void printBoard(int[][] b) {
         for(int y =0;y<b[0].length;y++){
