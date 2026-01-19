@@ -18,8 +18,10 @@ public class Ex3Algo implements PacManAlgo{
     /**
      *  Add a short description for the algorithm as a String.
      */
+    //TODO
     public String getInfo() {
-        return null;
+        return "this algorithem uses the function of shortespath and alldistance with the BFS " +
+                " algo to eat all of the pink-dots";
     }
     @Override
     /**
@@ -67,5 +69,18 @@ public class Ex3Algo implements PacManAlgo{
         int[] dirs = {Game.UP, Game.LEFT, Game.DOWN, Game.RIGHT};
         int ind = (int)(Math.random()*dirs.length);
         return dirs[ind];
+    }
+    /**
+     * helper function to convert position of Pack-Man(pos=string) string "x,y" to Pixel2D
+     * @param str the string with x,y coordinates
+     * @return Pixel2D with those coordinates
+     */
+    private static Pixel2D stringToPixel(String str) {
+        /////// add your code below ///////
+        String[] arr = str.split(","); //split the string by comma to get x and y separately
+        int x = Integer.parseInt(arr[0]); //get x coordinate from first part
+        int y = Integer.parseInt(arr[1]); //get y coordinate from second part
+        return new Index2D(x, y); //return new pixel with those coordinates
+        ///////////////////////////////////
     }
 }

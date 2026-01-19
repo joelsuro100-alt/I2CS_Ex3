@@ -55,6 +55,5 @@ public class Ex3Main {
 
 
     public static void play2() {
-
     }
 }
