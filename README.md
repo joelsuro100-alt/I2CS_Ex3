@@ -25,7 +25,8 @@ The implementation focuses on efficiency and robustness, allowing the Pacman to 
 [Click here to watch the gameplay video](INSERT_VIDEO_LINK_HERE)
 
 ### Success Screenshot
-![Level 4 Success](<img width="1072" height="1246" alt="Screenshot 2026-01-20 193521" src="https://github.com/user-attachments/assets/083717a0-a107-4c3f-9bd5-aeb309f09ffd" />
+![Level 4 Success](<img width="1072" height="1246" alt="Screenshot 2026-01-20 193521" src="https://github.com/user-attachments/assets/8ba7fd61-459f-41bd-b7de-841d2ded59a6" />
+
 )
 *(Replace this text with the path to your image, e.g., screenshots/win.png)*
 
