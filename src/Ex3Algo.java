@@ -51,6 +51,8 @@ public class Ex3Algo implements PacManAlgo{
                 }
             }
         }
+
+
 //        if(_count==0 || _count==300) {
 //
 //
@@ -88,22 +90,66 @@ public class Ex3Algo implements PacManAlgo{
             System.out.println(i+") status: "+g.getStatus()+",  type: "+g.getType()+",  pos: "+g.getPos(0)+",  time: "+g.remainTimeAsEatable(0));
         }
     }
-    private static int randomDir() {
-        int[] dirs = {Game.UP, Game.LEFT, Game.DOWN, Game.RIGHT};
-        int ind = (int)(Math.random()*dirs.length);
-        return dirs[ind];
-    }
+//    private static int randomDir() {
+//        int[] dirs = {Game.UP, Game.LEFT, Game.DOWN, Game.RIGHT};
+//        int ind = (int)(Math.random()*dirs.length);
+//        return dirs[ind];
+//    }
+
+    /////// Helper functions ///////
+
     /**
      * helper function to convert position of Pack-Man(pos=string) string "x,y" to Pixel2D
      * @param str the string with x,y coordinates
      * @return Pixel2D with those coordinates
      */
     private static Pixel2D stringToPixel(String str) {
-        /////// add your code below ///////
         String[] arr = str.split(","); //split the string by comma to get x and y separately
         int x = Integer.parseInt(arr[0]); //get x coordinate from first part
         int y = Integer.parseInt(arr[1]); //get y coordinate from second part
         return new Index2D(x, y); //return new pixel with those coordinates
-        ///////////////////////////////////
+    }
+
+    /**
+     * helper function to figure out which direction to move
+     * @param map the map we are on
+     * @param from current position
+     * @param to next position we want to go to
+     * @return the direction code (UP, DOWN, LEFT, RIGHT)
+     */
+    private static int toMove(Map map, Pixel2D from, Pixel2D to) {
+        if (map.isCyclic()) { //check if we are in cycle mode to not crash
+            if (from.getX() == to.getX()) { //check different y
+                if (from.getY() == map.getHeight() - 1 && to.getY() == 0) {
+                    return Game.UP; //if we wrapped from bottom to top- move up
+                }
+                if (from.getY() == 0 && to.getY() == map.getHeight() - 1) {
+                    return Game.DOWN; //if we wrapped from top to bottom- move down
+                }
+            }
+            if (from.getY() == to.getY()) { //now check diffrent x
+                if (from.getX() == map.getWidth() - 1 && to.getX() == 0) {
+                    return Game.RIGHT; //if we wrapped from right edge to left edge- move right
+                }
+                if (from.getX() == 0 && to.getX() == map.getWidth() - 1) {
+                    return Game.LEFT; //if we wrapped from left edge to right edge- move left
+                }
+            }
+        }
+
+        if (to.getX() == from.getX() && to.getY() < from.getY()) { //normal movement (no wrapping) x cords
+            return Game.DOWN; //move down (y decreased)
+        }
+        if (to.getX() == from.getX() && to.getY() > from.getY()) {
+            return Game.UP; //move up (y increased)
+        }
+
+        if (to.getX() < from.getX() && to.getY() == from.getY()) { //normal movement (no wrapping) y cords
+            return Game.LEFT; //move left (x decreased)
+        }
+        if (to.getX() > from.getX() && to.getY() == from.getY()) {
+            return Game.RIGHT; //move right (x increased)
+        }
+        return Game.PAUSE; //if no dir then dont move- default
     }
 }
