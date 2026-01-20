@@ -51,7 +51,19 @@ public class Ex3Algo implements PacManAlgo{
                 }
             }
         }
+        if (nearest != null) { //if we found food fo to it with toMove function
 
+            Pixel2D[] path = map.shortestPath(pacmanPos, nearest, 1); //get the shortestpath to food with BFS
+            if (path != null && path.length > 1) { //check if path exists and has at least 2 steps
+                Pixel2D nextStep = path[1]; //path 0 is our place and 1 is next step to food
+                int direction = toMove(map, pacmanPos, nextStep); //search which direction to move
+                return direction; //return the direction to move
+            }
+        }
+        //failsafe if no path then random dir
+        int[] dirs = {Game.UP, Game.LEFT, Game.DOWN, Game.RIGHT}; //array of all possible directions
+        int randomIndex = (int)(Math.random() * dirs.length); //pick a random index
+        return dirs[randomIndex]; //return random direction
 
 //        if(_count==0 || _count==300) {
 //
@@ -138,18 +150,13 @@ public class Ex3Algo implements PacManAlgo{
         }
 
         if (to.getX() == from.getX() && to.getY() < from.getY()) { //normal movement (no wrapping) x cords
-            return Game.DOWN; //move down (y decreased)
-        }
+            return Game.DOWN;} //move down (y decreased)
         if (to.getX() == from.getX() && to.getY() > from.getY()) {
-            return Game.UP; //move up (y increased)
-        }
-
+            return Game.UP;} //move up (y increased)
         if (to.getX() < from.getX() && to.getY() == from.getY()) { //normal movement (no wrapping) y cords
-            return Game.LEFT; //move left (x decreased)
-        }
+            return Game.LEFT;} //move left (x decreased)
         if (to.getX() > from.getX() && to.getY() == from.getY()) {
-            return Game.RIGHT; //move right (x increased)
-        }
+            return Game.RIGHT;} //move right (x increased)
         return Game.PAUSE; //if no dir then dont move- default
     }
 }
