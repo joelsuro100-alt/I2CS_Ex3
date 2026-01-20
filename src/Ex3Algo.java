@@ -64,29 +64,8 @@ public class Ex3Algo implements PacManAlgo{
         int[] dirs = {Game.UP, Game.LEFT, Game.DOWN, Game.RIGHT}; //array of all possible directions
         int randomIndex = (int)(Math.random() * dirs.length); //pick a random index
         return dirs[randomIndex]; //return random direction
-
-//        if(_count==0 || _count==300) {
-//
-//
-//            printBoard(board);
-//            int blue = Game.getIntColor(Color.BLUE, code);
-//            int pink = Game.getIntColor(Color.PINK, code);
-//            int black = Game.getIntColor(Color.BLACK, code);
-//            int green = Game.getIntColor(Color.GREEN, code);
-//            System.out.println("Blue=" + blue + ", Pink=" + pink + ", Black=" + black + ", Green=" + green);
-//
-//            String[] parts = pos.split(","); //split the string to int
-//            int x = Integer.parseInt(parts[0].trim());
-//            int y = Integer.parseInt(parts[1].trim());
-//            System.out.println("Pacman coordinate: "+pos);
-//            GhostCL[] ghosts = game.getGhosts(code);
-//            printGhosts(ghosts);
-//            int up = Game.UP, left = Game.LEFT, down = Game.DOWN, right = Game.RIGHT;
-//        }
-//        _count++;
-//        int dir = randomDir();
-//        return dir;
     }
+
     private static void printBoard(int[][] b) {
         for(int y =0;y<b[0].length;y++){
             for(int x =0;x<b.length;x++){
@@ -102,11 +81,7 @@ public class Ex3Algo implements PacManAlgo{
             System.out.println(i+") status: "+g.getStatus()+",  type: "+g.getType()+",  pos: "+g.getPos(0)+",  time: "+g.remainTimeAsEatable(0));
         }
     }
-//    private static int randomDir() {
-//        int[] dirs = {Game.UP, Game.LEFT, Game.DOWN, Game.RIGHT};
-//        int ind = (int)(Math.random()*dirs.length);
-//        return dirs[ind];
-//    }
+
 
     /////// Helper functions ///////
 
