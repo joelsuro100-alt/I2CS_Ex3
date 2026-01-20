@@ -22,7 +22,7 @@ The implementation focuses on efficiency and robustness, allowing the Pacman to 
 ## 🎥 Demo
 
 ### Watch the Pacman in Action
-[Click here to watch the gameplay video]([INSERT_VIDEO_LINK_HERE](https://youtube.com/shorts/OgIEpB-HZTg?feature=share))
+[Click here to watch the gameplay video]([[INSERT_VIDEO_LINK_HERE](https://youtube.com/shorts/OgIEpB-HZTg?feature=share)]
 
 ### Success Screenshot
 ![Level 4 Success DT 100]
