@@ -53,7 +53,6 @@ public class Ex3Main {
     }
     public static Character getCMD() {return _cmd;}
 
-
     public static void play2() {
     }
 }
