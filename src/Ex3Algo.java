@@ -18,10 +18,9 @@ public class Ex3Algo implements PacManAlgo{
     /**
      *  Add a short description for the algorithm as a String.
      */
-    //TODO
     public String getInfo() {
-        return "this algorithem uses the function of shortespath and alldistance with the BFS " +
-                " algo to eat all of the pink-dots";
+        return "Pacman Algo: Scans board for Pink/Green targets, calculates distances via BFS (Map.allDistance)," +
+                " and moves to the closest reachable target taking cyclic borders into account.";
     }
     @Override
     /**
